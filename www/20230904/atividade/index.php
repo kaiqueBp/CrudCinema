@@ -13,9 +13,9 @@ session_start();
 
 <body>
     <?php
-    if (isset($_SESSION["login"])) {
+    if (isset($_SESSION["name"])) {
     ?>
-        <h1><?= $_SESSION["login"] ?></h1>
+        <h1><?= $_SESSION["name"] ?></h1>
         <form action="logout.php" method="POST">
             <input type="submit" value="Logout">
         </form>
@@ -23,8 +23,7 @@ session_start();
     } else {
     ?>
         <form action="form.php" method="POST">
-            <input type="text" name="login">
-            <input type="password" name="senha">
+            <input type="text" name="name">
             <input type="submit">
         </form>
     <?php
