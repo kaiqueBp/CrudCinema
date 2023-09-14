@@ -14,6 +14,7 @@ services:
       - '80:80'
     links:
       - php-fpm
+      - db-mysql
   php-fpm:
     build: ./php-fpm
     container_name: php-fpm
@@ -21,3 +22,31 @@ services:
     volumes:
       - ./www:/var/www
       - ./php-fpm/php-ini-overrides.ini:/etc/php/7.4/fpm/conf.d/99-overides.ini
+    links:
+      - db-mysql
+  db-mysql:
+    image: mysql:5.7
+    container_name: db-mysql
+    ports:
+    - "3306:3306"
+    restart: always
+    command: mysqld --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: teste
+    volumes:
+    - ./data/db:/var/lib/mysql
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: phpmyadmin
+    restart: always
+    environment:
+      PMA_HOST: db-mysql
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+      PMA_USER: root
+      PMA_PASSWORD: root
+    ports:
+      - 8080:80
+    links:
+      - db-mysql
