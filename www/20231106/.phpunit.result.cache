@@ -1,0 +1,1 @@
+{"version":1,"defects":{"SomaTest::testSoma":3,"LoginTest::testLoginComCredenciaisValidas":3,"LoginTest::testLoginComCredenciaisInvalidas":4},"times":{"SomaTest::testSoma":0.014,"LoginTest::testLoginComCredenciaisValidas":0.191,"LoginTest::testLoginComCredenciaisInvalidas":0.01}}
