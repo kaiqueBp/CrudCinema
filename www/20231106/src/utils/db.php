@@ -1,7 +1,6 @@
 <?php
-
-class DatabaseSingleton
-{
+    namespace App\utils;
+    class DatabaseSingleton{
     private static $instance;
     private $conn;
     private $server = "db-mysql";
@@ -11,7 +10,7 @@ class DatabaseSingleton
 
     private function __construct()
     {
-        $this->conn = new mysqli($this->server, $this->user, $this->pass, $this->mydb);
+        $this->conn = new \mysqli($this->server, $this->user, $this->pass, $this->mydb);
 
         if ($this->conn->connect_error) {
             die("Conexão falhou: " . $this->conn->connect_error);
